@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body style="display: flex; flex-direction: column; place-items: center; align-items: center; justify-content: center; width: 100vw; height: 100vh; background-color: gray; text-align: center;">
+    <h1 id="result">Even or Odd</h1><br><br>
+   <div class="">
+     <input style="padding: 10px; border: none; border-radius: 15px;" type="number" id="num" placeholder="Enter your score">
+    <button onclick="checkGrade()" style="padding: 7px 12px; border: none; border-radius: 15px; background-color: white; margin-left: 5px; font-size: 22px;">Check</button>
+    <h1 id="checker">Your result</h1>
+   </div><br><br>
+   <div class="">
+    <input style="padding: 10px; border: none; border-radius: 15px;" type="number" id="num1" placeholder="Enter your first number">
+    <select name="operator" id="operator" style="padding: 10px; border: none; margin-left: 5px;" >
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input style="padding: 10px; border: none; border-radius: 15px; margin-left: 5px;"  type="number" id="num2" placeholder="Enter your secon number">
+    <br><br>
+    <button onclick="calculate()" style="padding: 7px 12px; border: none; border-radius: 15px; background-color: white; margin-left: 5px; font-size: 22px;">Calcula te</button>
+    <h1 id="operation">2 = 2 = 4</h1>
+   </div>
+    <script>
+        let user = prompt('Enter a number')
+        const result = document.getElementById("result")
+        if (user % 2 === 0 ) {
+           result.textContent = ` ${user} is an even number`
+        } else {
+             result.textContent = `${user} is a odd number`
+        }
+
+       function checkGrade() {
+        let num = parseInt(document.getElementById('num').value)
+        let checker = document.getElementById('checker')
+         if (num >= 0 && num <= 100) {
+            if (num >= 70) {
+                checker.textContent ='Your score is A Keep it up 👍'
+            } else if (num >= 60) {
+                checker.textContent ='Your score is B Keep it up 👍'
+            } else if (num >= 50) {
+                checker.textContent ='Your score is C Keep it up 👍'
+            } else if (num >= 40) {
+                checker.textContent ='Your score is D, You can do it'
+            } else {
+              checker.textContent ='Your score is E, You can do better'  
+            } 
+        }else {
+            checker.textContent ='invalid'
+        }
+       }
+       function calculate() {
+         let num1 = parseInt(document.getElementById('num1').value)
+         let num2 = parseInt(document.getElementById('num2').value)
+         let operator =(document.getElementById('operator').value)
+        let operation = document.getElementById('operation')
+        if (operator === '+') {
+            operation.textContent = num1 + num2
+        } else  if (operator === '-') {
+            operation.textContent = num1 - num2
+        } else  if (operator === '*') {
+            operation.textContent = num1 * num2
+        } else  if (operator === '/') {
+            operation.textContent = num2 !== 0 ? num1 / num2 : `${num1} cannot be divided by 0`
+        }else {
+           operation.textContent = " Re- eneter"
+        }
+
+       }
+    
+    </script>
+</body>
+</html>
