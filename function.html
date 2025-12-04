@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <p> function are bunch of blocks that you keep together to perform something which otherwise will be very, very repeated in your code , function can't be without a name, so that you can call it with the name </p>
+    <ul>
+        <ol>
+            <li> terminologies
+                <ul>
+                    <li><b>function and methods</b></li>
+                    <li>decleration and definition</li>
+                    <li>arguments and parameter</li>
+                    <li>callback and higher order function</li>
+                </ul>
+
+            </li>
+        </ol>
+    </ul>
+    <script>
+    //  function decleration / definition  
+     function printMe() {
+        console.log('printing...');
+        
+     }
+    // function parameter is a value pass to function definition inside parenthesis
+
+     printMe()
+     function printThis(params) {
+        console.log(params);
+        
+     }
+    //  function argument is the value you pass to evoke the function
+     printThis('zainab')
+
+    //  expression
+    const valu = 100
+    // defining a function with expression
+    const printMeAgain = function () {
+        console.log('printing...');
+        
+    }
+    printMeAgain()
+
+    function sum(a,b) {
+        return a+b;
+    }
+    console.log(sum(2,3));
+    
+
+
+    // default parameter
+    function calc(a, b) {
+        return(2 * (a + b))
+    }
+    function calc(a, b=0) {
+        return(2 * (a + b))
+    }
+    console.log(calc(2, 3));
+    console.log(calc(2, ));
+    console.log(calc(2, 7));
+    
+
+
+    // rest paremeter you can only have one  parameter in a function and it must be the last parameter
+    function collectThing(x, ...y) {
+        console.log(x);
+        console.log(y);
+        
+        
+    }
+    collectThing(1,2,3,4,5,6,7,8,9 )
+
+
+    // arrow function
+    const add = (x,y) => {
+        return x + y;
+    }
+   console.log(add(2,3));
+   
+   const adding = (x,y) => x + y;
+   const addin = y => y;
+   console.log(addin(5));
+   console.log(adding(5, 3));
+   
+
+
+//    nested function
+
+
+const items = [
+    {name: 'Bike', price: 100},
+    {name: 'Tv', price: 200},
+    {name: 'Album', price: 10},
+    {name: 'Book', price: 5},
+    {name: 'Phone', price: 500},
+    {name: 'Computer', price: 1000},
+    {name: 'Keyboard', price: 25}
+]
+const filteritems = items.filter((item) => {
+    return item.price <= 100
+})
+
+const itemsname = items.map((item) =>{
+    return [item.name, item.price]
+    
+})
+const finditem = items.find((item) =>{
+    return item.name === 'Album'
+})
+const foreachitem = items.forEach((item) => {
+    return item.price <=100
+    
+})
+const someitem = items.some((item) => {
+    return item.price <=100
+})
+const total = items.reduce((currentTotal, item) =>{
+    return item.price + currentTotal
+}, 0)
+console.log(filteritems);
+console.log(itemsname);
+console.log(finditem);
+console.log(foreachitem);
+console.log(someitem);
+console.log(total);
+const itemis = [1,2,3,4,5]
+const includemore = itemis.includes(5)
+console.log(includemore)
+    </script>
+</body>
+</html>

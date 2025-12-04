@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+     
+      background-color: black;
+    }
+    .container{
+        width: 50%;
+        height: 50%;
+        background-color: red;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    button{
+        background-color: black;
+        color: white;
+        padding: 7px 15px;
+        border: 2px solid white;
+    }
+    @media (max-width:480px) {
+        .container{
+        width: 90%;
+        height: 9git additt0%;
+        }
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <h2>Type a color</h2>
+  <input type="text" id="colorInput" placeholder="e.g red #ff0000">
+  <button  id="changeColor">Apply</button>
+  </div>
+
+
+
+  <script>
+// onclick="colorChanger()
+   
+    // function colorChanger() {
+    //     const colorInput = document.getElementById("colorInput").value.trim()
+    //      const container = document.querySelector(".container")
+    //      const button = document.getElementsByTagName("button")
+    //     container.style.backgroundColor = colorInput
+    //     button.style.backgroundColor = colorInput
+    // }
+    
+
+    const colorInput = document.getElementById("colorInput");
+  const container = document.querySelector(".container");
+  const changeColor = document.getElementById("changeColor");
+
+  changeColor.addEventListener("click", function () {
+    const color = colorInput.value.trim();
+    container.style.backgroundColor = color;
+    changeColor.style.backgroundColor = color;
+  });
+
+  
+  </script>
+</body>
+</html>
