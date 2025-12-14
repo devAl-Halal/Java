@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .day-btn {
+      margin: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .meal-input {
+      margin: 8px 0;
+      display: block;
+    }
+    #entries table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    #entries th, #entries td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    .action-btn {
+      cursor: pointer;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+    <h2>Weekly Meal Planner (Breakfast, Lunch, Dinner)</h2>
+
+  <div id="days">
+    <button class="day-btn" onclick="loadDay('Monday')">Monday</button>
+    <button class="day-btn" onclick="loadDay('Tuesday')">Tuesday</button>
+    <button class="day-btn" onclick="loadDay('Wednesday')">Wednesday</button>
+    <button class="day-btn" onclick="loadDay('Thursday')">Thursday</button>
+    <button class="day-btn" onclick="loadDay('Friday')">Friday</button>
+    <button class="day-btn" onclick="loadDay('Saturday')">Saturday</button>
+    <button class="day-btn" onclick="loadDay('Sunday')">Sunday</button>
+  </div>
+
+  <h3 id="current-day-title">Select a Day</h3>
+
+  <label>Morning:</label>
+  <input type="text" id="morning" class="meal-input">
+
+  <label>Afternoon:</label>
+  <input type="text" id="afternoon" class="meal-input">
+
+  <label>Evening:</label>
+  <input type="text" id="evening" class="meal-input">
+
+  <button onclick="saveMeal()">Save Meal</button>
+
+  <div id="entries"></div>
+
+
+    <script>
+        // window.localStorage.setItem('Theme', 'Dark');
+
+        // console.log(localStorage  );
+        // console.log(localStorage.length);
+        // console.log(localStorage.getItem('Theme'));
+        // console.log(localStorage.removeItem('Theme'));
+
+        // localStorage.setItem('Theme', 'Dark');
+        // localStorage.setItem('background', 'white')
+        // localStorage.setItem('color' , '#111')
+        // let keys = Object.keys(localStorage);
+        // for(let key of keys){
+        //     console.log(`${key}: ${localStorage.getItem(key)}`);
+            
+        // }
+
+        // const settings = {
+        //     backgroundColor: '#fff',
+        //     color: '#111',
+        //     theme: 'light'
+
+        // }
+        // localStorage.setItem('settings', JSON.stringify(settings))
+        // console.log(localStorage.getItem('settings'))
+        // let storedSettings = JSON.parse(localStorage.getItem('settings'))
+        // console.log(storedSettings);
+
+        // addEventListener('storage', function(e) {
+        //     console.log('The value of the ${e.key} change for the ${e.domain}')
+        // })
+        
+      let currentDay = null;
+
+function loadDay(day) {
+  currentDay = day;
+  document.getElementById('current-day-title').innerText = `Meals for ${day}`;
+  
+  const data = JSON.parse(localStorage.getItem(day)) || {};
+  document.getElementById('morning').value = data.morning || '';
+  document.getElementById('afternoon').value = data.afternoon || '';
+  document.getElementById('evening').value = data.evening || '';
+
+  displayEntries();
+}
+
+function saveMeal() {
+  if (!currentDay) {
+    alert("Select a day first.");
+    return;
+  }
+
+  const meal = {
+    morning: document.getElementById('morning').value,
+    afternoon: document.getElementById('afternoon').value,
+    evening: document.getElementById('evening').value,
+  };
+
+  localStorage.setItem(currentDay, JSON.stringify(meal));
+  displayEntries();
+  alert("Meal saved!");
+}
+
+function displayEntries() {
+  const container = document.getElementById('entries');
+  container.innerHTML = '';
+
+  if (!currentDay) return;
+
+  const meal = JSON.parse(localStorage.getItem(currentDay));
+
+  if (meal) {
+    container.innerHTML = `
+      <table>
+        <tr>
+          <th>Morning</th>
+          <th>Afternoon</th>
+<th>Actions</th>
+        </tr>
+        <tr>
+          <td>{meal.morning}</td>
+          <td>meal.afternoon</td>
+          <td>{meal.evening}</td>
+          <td>
+            <button onclick="editMeal()">Edit</button>
+            <button onclick="deleteMeal()">Delete</button>
+          </td>
+        </tr>
+      </table>
+    `;
+  }
+}
+
+function editMeal() {
+  const meal = JSON.parse(localStorage.getItem(currentDay));
+  if (meal) {
+    document.getElementById('morning').value = meal.morning;
+    document.getElementById('afternoon').value = meal.afternoon;
+    document.getElementById('evening').value = meal.evening;
+  }
+}
+
+function deleteMeal() {
+  localStorage.removeItem(currentDay);
+  document.getElementById('morning').value = '';
+  document.getElementById('afternoon').value = '';
+  document.getElementById('evening').value = '';
+  displayEntries();
+}
+
+    </script>
+</body>
+</html>
